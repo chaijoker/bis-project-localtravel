@@ -1,0 +1,178 @@
+{% extends 'travel/base.html' %}
+
+{% block title %}
+    <title>Profile</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="container main-section">
+    <div class="row" style="width: 100%;">
+        <div class="row user-left-part" style="width: 100%;">
+            <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
+                <div class="row ">
+                    <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
+                        <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle" style="width:150px;height:150px;">
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section2 text-center">
+                        <button id="btn-contact" (click)="clearModal()" data-toggle="modal" data-target="#contact" class="btn btn-success btn-block follow">แก้ไขข้อมูล</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
+                <div class="row profile-right-section-row">
+                    <div class="col-md-12 profile-header">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
+                                <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#profile" role="tab" data-toggle="tab">
+                                            <i class="fas fa-user-circle">ข้อมูลส่วนตัว</i>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">
+                                            <i class="fas fa-info-circle">ประวัติการจองทริป</i>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade show active" id="profile">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>First name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ user.first_name }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Last name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ user.last_name }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <p>{{ user.email }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="buzz">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>รายการทริป</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>หลักฐานการชำระเงิน</p>
+                                            </div>
+                                        </div>
+
+                                        {% for item in booking %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>{{item.trip.title}}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="#" data-target="#modalIMG{{item.id}}" data-toggle="modal" class="color-gray-darker c6 td-hover-none">
+                                                    <img src="{{item.image_pay.url}}" height="50%" width="50%">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {%endfor%}
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- start modal edit user -->
+
+    <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contact">Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form action="/users/{{ item.username }}" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="txtFirstname">First name</label>
+                        <input type="text" id="txtFirstname" class="form-control" value="{{ user.first_name }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtLastname">Last name</label>
+                        <input type="text" id="txtLastname" class="form-control" value="{{ user.last_name }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtEmail">Email</label>
+                        <input type="text" id="txtEmail" class="form-control" value="{{ user.email }}">
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end modal edit user -->
+
+
+
+<!-- start modal image -->
+{% for item in booking %}
+    <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="modalIMG{{item.id}}" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+                    <div class="modal-body mb-0 p-0">
+                        <img src="{{item.image_pay.url}}" alt="" style="width:100%">
+                    </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-outline-primary btn-rounded btn-md ml-4 text-center" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+ {% endfor %}
+
+<!-- end modal image -->
+
+
+
+  <hr>
+
+
+
+
+{% endblock content %}

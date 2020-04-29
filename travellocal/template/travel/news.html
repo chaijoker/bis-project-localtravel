@@ -1,0 +1,81 @@
+{% extends 'travel/base.html' %}
+
+{% block title %}
+    <title>NEWS</title>
+{% endblock title %}
+
+{% block content %}
+
+<!--Start Jumbotron-->
+
+    <div class="jumbotron jumnews"></div>
+
+<!--End Jumbotron-->
+
+<div class="container">
+    <br><h1 class="text-center">NEWS</h1> <br>
+    <div class="card-group">
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="{% url 'dnews-page' %}" class="btn btn-outline-info">More</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="{% url 'dnews-page' %}" class="btn btn-outline-info">More</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="{% url 'dnews-page' %}" class="btn btn-outline-info">More</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-group">
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-outline-info">More</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-outline-info">More</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-outline-info">More</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+    <!--Start footer-->
+    {% include 'travel/footer.html' %}
+    <!--End footer-->
+
+{% endblock content %}

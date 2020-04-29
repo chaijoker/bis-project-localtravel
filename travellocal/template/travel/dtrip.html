@@ -1,0 +1,122 @@
+{% extends 'travel/base.html' %}
+
+{% block title %}
+    <title>Detail Trip</title>
+{% endblock title %}
+
+{% block content %}
+
+<!--Start Jumbotron-->
+
+    <div class="jumbotron jumdtrp"></div>
+
+<!--End Jumbotron-->
+
+    <div class="container">
+        <div class="dtrip">
+            {% for item in trip %}
+            <h1 class="text-center">{{item.title}}</h1> <br><br>
+            <div class="row">
+                <div style="margin:0 auto;" class="text-center">
+                    <img src="{{item.image_trip.url}}" height="100%" width="100%">
+                </div>
+            </div>
+
+
+            <div class="container cdtrip">
+
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">รายละเอียดสถานที่</h5>
+                    <p class="card-text">{{item.detail_place}}</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">รายะเลียดทริป</h5>
+                        <p class="card-text">{{item.detail_trip|linebreaks}}</p>
+                        <p class="card-text">เวลาเริ่มทริป : {{item.time_start}}</p>
+                        <p class="card-text">เวลาสิ้นสุดทริป : {{item.time_end}}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-text">{{item.price_trip}} {{item.type_price}} / package</p>
+                        <p class="card-text">เบอร์โทรติดต่อ : {{item.phone}}</p>
+                        <p class="card-text">สถานะการจอง : {% if item.booking_status %}  ว่าง {% else %}  ถูกจองแล้ว {% endif %}</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" {% if user.is_authenticated %} data-target="#booking" {% else %} data-target="#login" {% endif %}>
+                            Booking
+                        </button>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            <!-- start modal ฺ Booking -->
+
+                <div class="modal fade" id="booking" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">การชำระเงิน</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form action="{% url 'booking-create' id=item.id %}" method="POST" enctype="multipart/form-data">
+                          <div class="modal-body">
+                            {% csrf_token %}
+                            <p>ไทยพาณิชย์ สาขามหาวิทยาลัยสงขลานรินทร์</p>
+                            <p>ชื่อบัญชี บริษัท ทราเวล โลโคว จำกัด</p>
+                            <p>หมายเลขบัญชี : 565-12154-5</p>
+                            <label for="example-time-input" >หลักฐานการชำระเงิน</label>
+                            <input class="form-control" type="file" name="img_photo" value="choose photo" id="example-time-input">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+            <!--  end model  -->
+
+
+            <!-- start modal ฺ Login -->
+
+                <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <p>กรุณาเข้าสู่ระบบก่อนทำการจองทริป</p>
+                      <div class="modal-footer">
+                        <a href="{% url 'login-page'%}" class="btn btn-primary">Login</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            <!--  end model  -->
+
+
+            </div>
+            {% endfor %}
+            <hr><br>
+
+
+        </div>
+    </div>
+
+
+{% endblock content %}

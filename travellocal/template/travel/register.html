@@ -1,0 +1,54 @@
+{% extends 'travel/base.html' %}
+
+{% block title %}
+    <title>Register</title>
+{% endblock title %}
+
+
+{% block content %}
+
+    <div class="container register-container">
+        <div class="row">
+            <div class="col-md-6 login-form-1">
+                <h3>Register for User</h3>
+                <form action="../register/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="first_name" placeholder="First Name *">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="last_name" placeholder="Last Name *">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="Username *">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password1" placeholder="Password *">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password2" placeholder="Confirm Password *">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" placeholder="Email *">
+                    </div>
+                    <p><a style="color:black" href="{% url 'registerguide-page' %}">Register for guide</a></p>
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="register" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        {% for messages in messages %}
+        <h3> {{messages}} </h3>
+        {% endfor %}
+    </div>
+
+    <!--Start footer-->
+    {% include 'travel/footer.html' %}
+    <!--End footer-->
+
+{% endblock %}

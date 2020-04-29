@@ -1,0 +1,94 @@
+{% extends 'travel/base.html' %}
+
+{% block title %}
+    <title>Local Travel</title>
+{% endblock title %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="container post-trip">
+            <form action="/trips/create" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group row">
+                  <label for="example-text-input" class="col-2 col-form-label">Title</label>
+                  <div class="col-10">
+                    <input class="form-control" type="text" name="title" placeholder="Title" id="example-text-input">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-text-input" class="col-2 col-form-label">Place</label>
+                  <div class="col-10">
+                    <input class="form-control" type="text" name="place" placeholder="place" id="example-text-input">
+                  </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleFormControlTextarea1"  class="col-2 col-form-label">Detail Place</label>
+                    <div class="col-10">
+                        <textarea class="form-control" name="detail_place" placeholder="detail place" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleFormControlTextarea1" class="col-2 col-form-label">Detail Trip</label>
+                    <div class="col-10">
+                        <textarea class="form-control" name="detail_trip" placeholder="detail trip" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-text-input" class="col-2 col-form-label">Price Trip</label>
+                  <div class="col-4">
+                    <input class="form-control" type="text" name="price_trip" placeholder="Price Trip" id="example-text-input">
+                  </div>
+                  <div class="col-4">
+                      <select name="type_price" style="height:100%;" id="inlineFormCustomSelectPref">
+                          <option value="THB">THB</option>
+                          <option value="USD">USD</option>
+                          <option value="CNY">CNY</option>
+                      </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-tel-input" class="col-2 col-form-label">Telephone</label>
+                  <div class="col-10">
+                    <input class="form-control" type="tel" name="phone" placeholder="081-123-4567" id="example-tel-input">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-date-input" class="col-2 col-form-label">Date</label>
+                  <div class="col-10">
+                    <input class="form-control" type="date" name="date" value="2020-02-24" id="example-date-input">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-time-input" class="col-2 col-form-label">Time Start</label>
+                  <div class="col-10">
+                    <input class="form-control" type="time" name="time_start" value="13:45:00" id="example-time-input">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-time-input" class="col-2 col-form-label">Time End</label>
+                  <div class="col-10">
+                    <input class="form-control" type="time" name="time_end" value="13:45:00" id="example-time-input">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-time-input" class="col-2 col-form-label">photo</label>
+                  <div class="col-10">
+                    <input class="form-control" type="file" name="img_photo" value="choose photo" id="example-time-input">
+                  </div>
+                </div>
+                <button type="submit" style="margin-left:50%;" class="btn btn-primary mt-2">Sudmit</button>
+            </form>
+        </div>
+    </div>
+
+
+
+  <hr>
+
+    <!--Start footer-->
+    {% include 'travel/footer.html' %}
+    <!--End footer-->
+
+{% endblock content %}

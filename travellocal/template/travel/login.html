@@ -1,0 +1,38 @@
+{% extends 'travel/base.html' %}
+
+{% block title %}
+    <title>Login</title>
+{% endblock title %}
+
+
+{% block content %}
+
+    <div class="container login-container">
+        <div class="row">
+
+            <div class="login-form-2">
+                <h3>Login for User</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="Username*">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Your Password *">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="Login" />
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Start footer-->
+    {% include 'travel/footer.html' %}
+    <!--End footer-->
+
+{% endblock %}

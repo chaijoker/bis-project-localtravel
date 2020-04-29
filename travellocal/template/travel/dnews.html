@@ -1,0 +1,37 @@
+{% extends 'travel/base.html' %}
+
+{% block title %}
+    <title>Detail NEWS</title>
+{% endblock title %}
+
+{% block content %}
+
+<!--Start Jumbotron-->
+
+    <div class="jumbotron jumnews"></div>
+
+<!--End Jumbotron-->
+
+<div class="container">
+    <div class="dtrip">
+        <h1 class="text-center">Trip Name</h1> <br><br>
+        <div class="row">
+            <div class="col-sm-6 ctrip-form1">
+                <img src="https://kdcdn.co/wp-content/uploads/121-9-1280x720.jpg" height="250" width="450">
+            </div>
+
+            <div class="col-sm-6 ctrip-form2" >
+                <p>สงขลา-สะเดา “ อู่หลิน ไนท์ มาร์เก็ต” Wulin Night Market  ตลาดวัฒนธรรมจีน 1 เดียวในจังหวัดสงขลา ของเครือบริษัท เอ็มบีไอกรุ๊ป หวังส่งเสริมการท่องเที่ยว ในเมืองชายแดนสะเดา-สงขลา  และให้ผู้ประกอบอาชีพค้าขาย มีรายได้ในช่วงเศรษฐกิจตกต่ำ </p>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+    <!--Start footer-->
+    {% include 'travel/footer.html' %}
+    <!--End footer-->
+
+{% endblock content %}
